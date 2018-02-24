@@ -11,8 +11,8 @@
   user: "{{ usernm }}"
   roles:
     - { role: 'osx_base', tags: 'osx_base' }
-    - { role: 'xcode', tags: 'xcode' }
-  # - { role: 'homebrew', tags: 'homebrew' }
+    # - { role: 'xcode', tags: 'xcode' }
+    - { role: 'homebrew', tags: 'homebrew' }
     - { role: 'packages', tags: 'packages' }
     - { role: 'git', tags: 'git' }
     - { role: 'dotfiles', tags: 'dotfiles' }
