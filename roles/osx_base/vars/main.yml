@@ -1,4 +1,4 @@
 ---
 hostname: laptop
-search_domain_iface: "Ethernet 1"
-search_domains: "es.net testbed100.es.net"
+search_domain_iface: "Wi-Fi"
+search_domains: "vladg.net es.net testbed100.es.net"

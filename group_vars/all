@@ -2,7 +2,8 @@
 full_name: "Vlad Grigorescu"
 usernm: vlad
 groupnm: staff
-email: vlad@es.net
+email: grigorescu@gmail.com
+shell: /bin/zsh
 home_dir: "/Users/{{ usernm }}"
 projects_dir: "{{ home_dir }}/projects"
 ssh_dir: "{{ home_dir }}/.ssh"
