@@ -44,4 +44,4 @@ If you want to use dotfiles:
 ## Running
 
 1. cd to osx-ansible dir (`~/projects/osx-ansible` by default)
-1. `ansible-playbook playbooks/common.yml`
+1. `sudo ansible-playbook playbooks/common.yml`
