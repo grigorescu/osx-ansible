@@ -29,7 +29,6 @@ Before running you must install ansible. You can either:
 ## Configuration
 
 1. Clone the repo (e.g. `cd projects; git clone https://github.com/soehlert/osx-ansible.git`)
-1. If you're installing somewhere other than `~/projects/osx-ansible`, edit osx-ansible/ansible.cfg to point to correct inventory file (ansible_hosts in osx-ansible) and (ansible.cfg in osx-ansible).
 1. Set variables in group_vars/all ***** MUST DO ****
 1. Set hostname variable roles/osx_base/vars/main.yml
 1. Set variables in roles/*/vars/main.yml
