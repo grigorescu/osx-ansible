@@ -2,11 +2,8 @@
 brews:
   - bash
   - bash-completion
-<<<<<<< HEAD
-=======
   - boot2docker
   - cask
->>>>>>> b25afbe7785a148ec04980df0941de491c56748d
   - cctools
   - cmake
   - gdbm
@@ -65,13 +62,10 @@ extra_brews:
 
 extra_casks:
   - audacity
-<<<<<<< HEAD
-=======
   - evernote
   - gopro-studio
   - kindle
   - logitech-harmony
->>>>>>> b25afbe7785a148ec04980df0941de491c56748d
   - monolingual
   - mp3tag
   - onyx
