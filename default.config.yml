@@ -1,0 +1,13 @@
+homebrew_installed_packages:
+  - git
+  - go
+  - gpg
+  - httpie
+  - iperf
+  - sqlite
+  - nmap
+  - ssh-copy-id
+  - cowsay
+  - openssl
+  - pv
+  - wget

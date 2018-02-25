@@ -24,12 +24,13 @@ Before running you must install ansible. You can either:
     sudo easy_install pip
     sudo pip install ansible
   ```
-1. Install from homebrew (`brew install ansible`), in which case you can turn off homebrew role.
+2. Install from homebrew (`brew install ansible`), in which case you can turn off homebrew role.
 
 ## Configuration
 
 1. Clone the repo (e.g. `cd projects; git clone https://github.com/soehlert/osx-ansible.git`)
 1. Set variables in group_vars/all ***** MUST DO ****
+1. Set variables in default.config.yml
 1. Set hostname variable roles/osx_base/vars/main.yml
 1. Set variables in roles/*/vars/main.yml
 
@@ -43,4 +44,5 @@ If you want to use dotfiles:
 ## Running
 
 1. cd to osx-ansible dir (`~/projects/osx-ansible` by default)
-1. `sudo ansible-playbook playbooks/common.yml`
+1. `ansible-galaxy install -r requirements.yml`
+1. `sudo ansible-playbook main.yml -i ansible_hosts`

@@ -1,0 +1,30 @@
+---
+- hosts: all
+  connection: local
+
+  vars_files:
+    - default.config.yml
+
+  pre_tasks:
+    - include_vars: "{{ item }}"
+      with_fileglob:
+        - ../config.yml
+      tags: ['always']
+
+  roles:
+    - role: 'osx_base'
+      tags: ['osx_base']
+    - role: 'xcode'
+      tags: ['xcode']
+    - role: geerlingguy.homebrew
+      tags: ['homebrew']
+    - role: 'packages'
+      tags: ['packages']
+    - role: 'git'
+      tags: ['git']
+    - role: 'dotfiles'
+      tags: ['dotfiles']
+    - role: 'tweaks'
+      tags: ['tweaks']
+    - role: 'hazel'
+      tags: ['hazel']
