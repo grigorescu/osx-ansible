@@ -3,3 +3,119 @@ finder_new_window_path: "file://{{ home_dir }}"
 screenshots_dir: "{{ home_dir }}/desktop"
 timezone: America/Chicago
 sleepimage: /Private/var/vm/sleepimage
+
+dock_defaults:
+  # Change minimize/maximize effect
+#  - { key: mineffect, type: string, value: "scale" }
+  # Minimize windows into their application's icon
+  - { key: minimize-to-application, type: bool, value: true }
+  # Enable spring loading for all Dock items
+  - { key: enable-spring-load-actions-on-all-items, type: bool, value: true }
+  # Show indicator lights for open applications in the Dock
+  - { key: show-process-indicators, type: bool, value: true }
+  # Animate opening applications from the Dock or naw
+  - { key: launchanim, type: bool, value: false }
+  # Don’t show Dashboard as a Space
+  - { key: dashboard-in-overlay, type: bool, value: false }
+  # Don’t automatically rearrange Spaces based on most recent use
+  - { key: mru-spaces, type: bool, value: false }
+  # Remove the animation when hiding/showing the Dock
+  - { key: autohide-time-modifier, type: float, value: 0 }
+  # Automatically hide and show the Dock
+  - { key: autohide, type: bool, value: true }
+  # Make Dock icons of hidden applications translucent
+  - { key: showhidden, type: bool, value: true }
+  # Make Dock more transparent
+  - { key: hide-mirror, type: bool, value: true }
+  # Remove cruft from the dock
+  - { key: persistent-apps, value: false, type: bool, state: absent }
+  - { key: persistent-other, value: false, type: bool, state: absent }
+  
+
+finder_defaults:
+  - { key: EmptyTrashSecurely, type: bool, value: true }
+  # Choose Finder window view; Options clmv=column, list=list, icnv=icon, flwv=flow
+  - { key: FXPreferredViewStyle, type: string, value: "lcmv" }
+  - { key: WarnOnEmptyTrash, type: bool, value: true }
+  # Allow highlighting in quick look
+  - { key: QLEnableTextSelection, type: bool, value: true }
+  # Show POSIX path in titlebar of Finder windows
+  - { key: _FXShowPosixPathInTitle, type: bool, value: true }
+  # Show all files
+  - { key: AppleShowAllFiles, type: bool, value: true }
+  - { key: ShowHardDrivesOnDesktop, type: bool, value: false }
+  - { key: ShowMountedServersOnDesktop, type: bool, value: false }
+  - { key: ShowExternalDisksOnDesktop, type: bool, value: false }
+  - { key: ShowRemovableMediaOnDesktop, type: bool, value: false }
+  # Next two change what new Finder window opens to
+  - { key: NewWindowTarget, type: string, value: "PfLo" }
+#   - { key: NewWindowTargetPath, type: string, value: "{{ finder_new_window_path }}" }
+  - { key: DisableAllAnimations, type: bool, value: true }
+  # Show the "Are you sure?" when quitting
+  - { key: QuitMenuItem, type: bool, value: false }
+
+
+global_defaults:
+  - { key: AppleShowAllExtensions, type: bool, value: false }
+  - { key: AppleEnableMenuBarTransparency, type: bool, value: true }
+  # Enable Dark Mode
+  - { key: AppleInterfaceStyle, type: string, value: "Dark" }
+  # Spring loading for directories
+  - { key: com.apple.springing.enabled, type: bool, value: true }
+  # Remove the spring loading delay for directories
+  - { key: com.apple.springing.delay, type: float, value: 0 }
+  # When to show scroll bars; Possible values= `WhenScrolling`, `Automatic` and `Always`
+  - { key: AppleShowScrollBars, type: string, value: "WhenScrolling" }
+  # Smooth scrolling
+  - { key: NSScrollAnimationEnabled, type: bool, value: true }
+  # Default to expand save panel by default (not sure why there's two names for this)
+  - { key: NSNavPanelExpandedStateForSaveMode, type: bool, value: true }
+  - { key: NSNavPanelExpandedStateForSaveMode2, type: bool, value: true }
+  # Default to expand print panel by default (not sure why there's two names for this)
+  - { key: PMPrintingExpandedStateForPrint, type: bool, value: true }
+  - { key: PMPrintingExpandedStateForPrint2, type: bool, value: true }
+  # OSX defaults to saving to icloud
+  - { key: NSDocumentSaveNewDocumentsToCloud, type: bool, value: false }
+  # Resume apps
+  - { key: NSQuitAlwaysKeepsWindows, type: bool, value: false }
+  # Automatic termination of inactive apps
+  - { key: NSDisableAutomaticTermination, type: bool, value: true }
+  # Stupid smart quotes and dashes
+  - { key: NSAutomaticQuoteSubstitutionEnabled, type: bool, value: false }
+  - { key: NSAutomaticDashSubstitutionEnabled, type: bool, value: false }
+  - { key: AppleMetricUnits, type: bool, value: false }
+  # Auto correct spelling
+  - { key: NSAutomaticSpellingCorrectionEnabled, type: bool, value: false }
+  # Tap to click trackpad
+  - { key: com.apple.mouse.tapBehavior, type: int, value: 1 }
+  # Natural style scrolling
+  # - { key: com.apple.swipescrolldirection, type: bool, value: false }
+  # Improve key repeat (enable, and lower the delay)
+  - { key: ApplePressAndHoldEnabled, type: bool, value: false }
+  - { key: InitialKeyRepeat, type: int, value: 20 }
+  - { key: KeyRepeat, type: int, value: 1 }
+  # Use option key as meta by default in Terminal
+  - { domain: com.apple.Terminal, key: useOptionAsMetaKey, type: bool, value: true }
+  # Automatically quit printer app once the print jobs complete
+  - { domain: com.apple.print.PrintingPrefs, key: "Quit When Finished", type: bool, value: true }
+  # Don't write .ds_store files on network vols
+  - { domain: com.apple.desktopServices, key: DSDontWriteNetworkStores, type: bool, value: true }
+  # Set help viewer window mode; false=floating
+  - { domain: com.apple.helpviewer, key: DevMode, type: bool, value: true }
+  # Higher quality audio with bluetooth headphones
+  - { domain: com.apple.BluetoothAudioAgent, key: "Apple Bitpool Min (editable)", type: int, value: 40 }
+  # Zoom to mouse
+  - { domain: com.apple.universalaccess, key: closeViewZoomFollowFocus, type: bool, value: false }
+  # Require password (value = 1) after sleep or screen saver begins
+  - { domain: com.apple.screensaver, key: askForPassword, type: int, value: 1 }
+  # How long to wait to require password (0 = immediately)
+  - { domain: com.apple.screensaver, key: askForPasswordDelay, type: float, value: 0 }
+  # Set screenshots directory
+  - { domain: com.apple.screencapture, key: location, type: string, value: "{{ screenshots_dir }}" }
+  # Use PNG screenshots
+  - { domain: com.apple.screencapture, key: type, type: string, value: "png" }
+  # Disable dashboard
+  - { domain: com.apple.dashboard, key: mcx-disabled, type: bool, value: true }
+  # Don't offer up each new external HD as a time machine destination
+  - { domain: com.apple.TimeMcahine, key: DoNotOfferNewDisksForBackup, type: bool, value: "true" }
+
