@@ -6,7 +6,6 @@ brews:
   - cmake
   - findutils
   - gawk
-  - geoip
   - gdbm
   - git
   - go
@@ -14,7 +13,6 @@ brews:
   - httpie
   - iperf
   - libevent
-  - libressl
   - netcat
   - nmap
   - ssh-copy-id
@@ -23,13 +21,11 @@ brews:
   - python
   - python3
   - pv
-  - swig
   - tmux
   - wget
   - xz
 common_casks:
   - 1password
-  - 1password-cli
   - adium
   - alfred
   - amazon-drive
@@ -43,9 +39,7 @@ common_casks:
   - hex-fiend
   - iterm2
   - little-snitch
-  - spotify
   - slack
-  - wireshark
   - zoomus
 font_casks:
   - font-source-code-pro

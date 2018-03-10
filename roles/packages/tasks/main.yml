@@ -8,25 +8,40 @@
 # linking the prereqs is a little dirty
 ####
 
-- name: Update homebrew
-  homebrew:
-    update_homebrew: yes
-
 - name: Fix perms on /usr/local
   file:
     path: "/usr/local/{{ item }}"
     owner: "{{ usernm }}"
     group: admin
-    mode: 0755
+    mode: 0775
     recurse: yes
     state: directory
   become: true
   become_user: root
   with_items:
     - bin
+    - Caskroom
+    - Homebrew
     - share
+    - var
+
+- name: Tap homebrew taps
+  become: true
+  become_user: "{{ usernm }}"
+  homebrew_tap:
+    name: "{{ item }}"
+  with_items:
+    "{{ taps }}"
+
+- name: Update homebrew
+  become: true
+  become_user: "{{ usernm }}"
+  homebrew:
+    update_homebrew: yes
 
 - name: Link prereqs
+  become: true
+  become_user: "{{ usernm }}"
   homebrew:
     name: "{{ item.name }}"
     state: "{{ item.state }}"
@@ -42,6 +57,8 @@
     - { name: xz, state: linked }
 
 - name: Install default packages from homebrew
+  become: true
+  become_user: "{{ usernm }}"
   homebrew:
     name: "{{ item }}"
     state: present
@@ -49,41 +66,48 @@
     "{{ brews }}"
 
 - name: Install extra packages from homebrew
+  become: true
+  become_user: "{{ usernm }}"
   homebrew:
     name: "{{ item }}"
     state: present
-  when: "'osx-personal' in group_names"
+  when: extra_brews
   with_items:
     "{{ extra_brews }}"
 
-    #- name: Check for caskroom directory
-    #stat:
-      #path: /opt/homebrew-cask/Caskroom
-      #register: caskroom
-
-#- name: We need to make Caskroom for the first time at /opt/homebrew-cask/Caskroom
-#file:
-  #path: /opt/homebrew-cask/Caskroom
-  #owner: "{{ usernm }}"
-  #group: "{{ groupnm }}"
-  #mode: 0755
-  #recurse: true
-  #state: directory
-  #become: true
-  #become_user: root
-  #when: (caskroom.stat.exists == false)
-
 - name: Install packages from homebrew cask
+  become: true
+  become_user: "{{ usernm }}"
   homebrew_cask:
     name: "{{ item }}"
     state: present
+    install_options: 'appdir={{ home_dir }}/Applications'
   with_items:
     "{{ common_casks }}"
 
-- name: Install extra casks (useful for home laptop)
+- name: Install extra casks from homebrew
+  become: true
+  become_user: "{{ usernm }}"
+  homebrew:
+    name: "{{ item }}"
+    state: present
+    install_options: 'appdir={{ home_dir }}/Applications'
+  when: extra_casks
+  with_items:
+    "{{ extra_casks }}"
+
+- name: Install fonts from homebrew cask
+  become: true
+  become_user: "{{ usernm }}"
   homebrew_cask:
     name: "{{ item }}"
     state: present
-  when: "'osx-personal' in group_names"
   with_items:
-    "{{ extra_casks }}"
+    "{{ font_casks }}"
+  register: font_install
+
+- name: Clear font caches on new font
+  become: true
+  become_user: root
+  command: atsutil databases -remove
+  when: font_install.changed
