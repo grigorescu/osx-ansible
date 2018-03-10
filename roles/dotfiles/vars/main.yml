@@ -1,2 +1,3 @@
 ---
-dotfiles_repo: git@bitbucket.org:soehlert21/dotfiles.git
+zshrc: https://raw.githubusercontent.com/grigorescu/Configs/master/.zshrc
+install_hook: update_configs
