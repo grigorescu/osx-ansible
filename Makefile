@@ -15,4 +15,4 @@ app_store:
 	ansible-playbook main.yml -i ansible_hosts --tags app_store -K
 tweaks:
 	ansible-playbook main.yml -i ansible_hosts --tags tweaks -K
-all: osx_base packages dotfiles tweaks
+all: install osx_base packages dotfiles tweaks
