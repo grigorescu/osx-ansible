@@ -14,6 +14,11 @@
   become_user: root
   command: screenresolution set 2048x1280x32@0
 
+- name: Set display sleep to 5 mins on battery
+  become: true
+  become_user: root
+  command: pmset -b displaysleep 5
+
 - name: Global tweaks (or tweaks that don't require a notify)
   become: true
   become_user: "{{ usernm }}"
@@ -111,3 +116,18 @@
   become: true
   become_user: "{{ usernm }}"
   command: chflags nohidden {{ home_dir }}/Library/
+
+- name: Adium Event Notifications
+  become: true
+  become_user: "{{ usernm }}"
+  copy:
+    src: "files/{{ item }}.plist"
+    dest: "{{ home_dir }}/Library/Application Support/Adium 2.0/Users/Default/{{ item }}.plist"
+    owner: "{{ usernm }}"
+    group: "{{ groupnm }}"
+    mode: 0750
+  with_items:
+    - "Status Preferences"
+    - "Event Presets"
+    - "Contact Alerts"
+    - "Address Book"

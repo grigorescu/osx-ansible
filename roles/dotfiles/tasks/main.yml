@@ -42,7 +42,7 @@
     dest: "{{ home_dir }}/.gitignore"
     owner: "{{ usernm }}"
     group: "{{ groupnm }}"
-    backup: trueA
+    backup: true
 - name: Create launchd directory
   become: true
   become_user: "{{ usernm }}"
@@ -102,7 +102,7 @@
 - name: Create Firefox profile
   become: true
   become_user: "{{ usernm }}"
-  command: '/Applications/Firefox.app/Contents/MacOS/firefox-bin -CreateProfile "HardenedDefault {{ home_dir }}/Library/Application Support/Firefox/Profiles/hardened.default"'
+  command: '{{ home_dir }}/Applications/Firefox.app/Contents/MacOS/firefox-bin -CreateProfile "HardenedDefault {{ home_dir }}/Library/Application Support/Firefox/Profiles/hardened.default"'
 - name: Install Firefox preferences
   become: true
   become_user: root

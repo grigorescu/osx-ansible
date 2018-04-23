@@ -21,7 +21,12 @@
   with_items:
     - bin
     - Caskroom
+    - Cellar
+    - etc
     - Homebrew
+    - include
+    - lib
+    - opt
     - share
     - var
 
@@ -39,23 +44,6 @@
   homebrew:
     update_homebrew: yes
 
-- name: Link prereqs
-  become: true
-  become_user: "{{ usernm }}"
-  homebrew:
-    name: "{{ item.name }}"
-    state: "{{ item.state }}"
-  with_items:
-    # needed for python
-    - { name: gdbm, state: present }
-    - { name: gdbm, state: linked }
-    # needed for tmux
-    - { name: libevent, state: present }
-    - { name: libevent, state: linked }
-    # needed for lots of stuff
-    - { name: xz, state: present }
-    - { name: xz, state: linked }
-
 - name: Install default packages from homebrew
   become: true
   become_user: "{{ usernm }}"
@@ -64,16 +52,6 @@
     state: present
   with_items:
     "{{ brews }}"
-
-- name: Install extra packages from homebrew
-  become: true
-  become_user: "{{ usernm }}"
-  homebrew:
-    name: "{{ item }}"
-    state: present
-  when: extra_brews
-  with_items:
-    "{{ extra_brews }}"
 
 - name: Install packages from homebrew cask
   become: true
@@ -85,10 +63,17 @@
   with_items:
     "{{ common_casks }}"
 
+- name: Install casks which need to be installed as root (via sudo)
+  homebrew_cask:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    "{{ root_casks }}"
+
 - name: Install extra casks from homebrew
   become: true
   become_user: "{{ usernm }}"
-  homebrew:
+  homebrew_cask:
     name: "{{ item }}"
     state: present
     install_options: 'appdir={{ home_dir }}/Applications'

@@ -2,21 +2,30 @@
 taps:
   - caskroom/fonts 
 brews:
+  - automake
   - coreutils
   - cmake
+  - exiftool
   - findutils
+  - fzf
   - gawk
   - geoip
   - gdbm
   - git
   - go
   - gpg
+  - graphviz
   - httpie
   - iperf
+  - keepassc
   - libevent
   - libressl
+  - libtool
+  - mplayer
   - netcat
   - nmap
+  - node
+  - proxychains-ng
   - ssh-copy-id
   - screenresolution
   - openssl
@@ -33,7 +42,6 @@ common_casks:
   - adium
   - alfred
   - amazon-drive
-  - crashplan
   - docker
   - dropbox
   - emacs
@@ -45,11 +53,13 @@ common_casks:
   - little-snitch
   - spotify
   - slack
-  - wireshark
-  - zoomus
 font_casks:
   - font-source-code-pro
   - font-source-code-pro-for-powerline
-extra_brews:
 extra_casks:
   - adobe-photoshop-lightroom
+root_casks:
+  - crashplan
+  - viscosity
+  - wireshark
+  - zoomus
