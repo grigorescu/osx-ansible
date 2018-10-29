@@ -12,19 +12,18 @@ There are some steps that you should consider before and during installation of 
 Some steps you might want to consider are:
 
 1. On first boot, hold Command Option P R keys to clear NVRAM.
-1. Before installing MacOS, format the drive as APFS (Case-sensitive, Encrypted). This is preferred to FileVault.
+1. Before installing MacOS, format the drive as APFS (Case-insensitive, Encrypted). This is preferred to FileVault.
 1. The MacOS installer will create an admin user. This should not be your regular user. For more info, see https://github.com/drduh/macOS-Security-and-Privacy-Guide#admin-and-standard-user-accounts
 
-## Installing Ansible
+## First steps
 
-Before running you must install ansible. You can either:
-
-1. Install from pip (preferred). This will also prompt you to install the XCode Tools.
+1. Install Homebrew
   ```
-    sudo easy_install pip
-    sudo pip install ansible
+  wget /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  /usr/bin/ruby install
+  rm install
   ```
-2. Install from homebrew (`brew install ansible`), in which case you can turn off homebrew role.
+2. Install Ansible (`brew install ansible`)
 
 ## Configuration
 
