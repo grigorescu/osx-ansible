@@ -1,3 +1,4 @@
+---
 name: MacOS Test
 
 on:
@@ -10,18 +11,18 @@ jobs:
     runs-on: macos-latest
 
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: Bootstrap
-      run: bash ./bootstrap.sh
+      - name: Bootstrap
+        run: bash ./bootstrap.sh
 
-   - name: Debug Version Info
-     run: |
-        ansible --version
-        brew --version
+      - name: Debug Version Info
+        run: |
+          ansible --version
+          brew --version
 
-    - name: Ansible Linter
-      run: ansible-lint roles/wallpaper
+      - name: Ansible Linter
+        run: ansible-lint roles/wallpaper
 
-    - name: Common Playbook
-      run: ansible-playbook playbooks/common.yml
+      - name: Common Playbook
+        run: ansible-playbook playbooks/common.yml
