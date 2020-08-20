@@ -22,7 +22,15 @@ jobs:
           brew --version
 
       - name: Ansible Linter
-        run: ansible-lint roles/wallpaper
+        continue-on-error: true
+        run: |
+          for role in roles/*
+          do
+          echo "Linting $role"
+          echo "--------------------"
+          ansible-lint $role
+          echo "--------------------"
+          done
 
       - name: Common Playbook
         run: ansible-playbook playbooks/common.yml

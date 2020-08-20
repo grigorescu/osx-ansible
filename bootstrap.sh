@@ -13,6 +13,4 @@ done
 
 type brew >/dev/null 2>&1 || /bin/bash ./roles/homebrew/files/install-homebrew.sh
 
-type ansible >/dev/null 2>&1 || /usr/local/bin/brew install ansible
-
-type ansible-lint >/dev/null 2>&1 || pip install ansible-lint
+type ansible >/dev/null 2>&1 || /usr/local/bin/brew install ansible ansible-lint
