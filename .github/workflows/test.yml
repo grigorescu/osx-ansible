@@ -1,0 +1,25 @@
+name: MacOS Test
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    name: End to end provisioning
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Debug Ansible Info
+        run: ansible --version
+
+      - name: Ansible Linter
+        run: ansible-lint roles/wallpaper
+
+      - name: Bootstrap
+        run: bash ./bootstrap.sh
+
+      - name: Common Playbook
+        run: ansible-playbook playbooks/common.yml
