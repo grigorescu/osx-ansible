@@ -10,16 +10,16 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - uses: actions/checkout@v2
+    - uses: actions/checkout@v2
 
-      - name: Debug Ansible Info
-        run: ansible --version
+    - name: Debug Ansible Info
+      run: ansible --version
 
-      - name: Ansible Linter
-        run: ansible-lint roles/wallpaper
+    - name: Ansible Linter
+      run: ansible-lint roles/wallpaper
 
-      - name: Bootstrap
-        run: bash ./bootstrap.sh
+    - name: Bootstrap
+      run: bash ./bootstrap.sh
 
-      - name: Common Playbook
-        run: ansible-playbook playbooks/common.yml
+    - name: Common Playbook
+      run: ansible-playbook playbooks/common.yml
